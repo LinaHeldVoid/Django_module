@@ -5,8 +5,8 @@ from .models import Student, Teacher
 
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
-    list_display = ['name']
-    list_filter = ['name']
+    list_display = ['name', 'group']
+    list_filter = ['group']
 
 
 @admin.register(Teacher)
