@@ -1,20 +1,19 @@
 import csv
 
-from django.core.management.base import BaseCommand
+from django.core.management.base import BaseCommand, CommandError
 from work_with_database.phones.models import Phone
 
 
 class Command(BaseCommand):
     def add_arguments(self, parser):
-        pass
+        parser.add_argument('phones.csv', nargs='+', type=str)
 
     def handle(self, *args, **options):
-        with open('phones.csv', 'r') as file:
-            phones = list(csv.DictReader(file, delimiter=';'))
-
-        for phone in phones:
-            name = phone['name']
-            image = phone['image']
-            price = phone['price']
-            release_date = phone['release_date']
-            lte_exists = phone['lte_exists']
+        for csv_file in options['phones.csv']:
+            data_reader = csv.reader(open(csv_file), delimiter=',', quotechar='"')
+            for row in data_reader:
+                name = row[1]
+                photo = row[2]
+                price = row[3]
+                release_date = row[4]
+                lte_exists = row[5]
