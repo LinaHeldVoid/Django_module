@@ -14,7 +14,7 @@ class Command(BaseCommand):
 
         for phone in phones:
             # TODO: Добавьте сохранение модели
-            phone = Phone(
+            t_phone = Phone(
                 id=phone['id'],
                 name=phone['name'],
                 image=phone['image'],
@@ -23,4 +23,4 @@ class Command(BaseCommand):
                 lte_exists=phone['lte_exists'],
                 slug=phone['name'].replace(' ', ''),
             )
-            phone.save()
+            t_phone.save()
